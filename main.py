@@ -8,16 +8,10 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='$', intents=intents)
 
-# -------------------------------------------------------
-# EVENTO ON_READY
-# -------------------------------------------------------
 @bot.event
 async def on_ready():
     print(f"Bot conectado como: {bot.user}")
 
-# -------------------------------------------------------
-# COMANDO MEM (imagen aleatoria)
-# -------------------------------------------------------
 @bot.command()
 async def mem(ctx):
     imagen = random.choice(os.listdir('images'))
@@ -25,14 +19,10 @@ async def mem(ctx):
         picture = discord.File(f)
     await ctx.send(file=picture)
 
-# -------------------------------------------------------
-# COMANDO RECYCLE (versión inteligente)
-# -------------------------------------------------------
 @bot.command()
 async def recycle(ctx, *, objeto: str):
     objeto = objeto.lower()
 
-    # ---- BASE DE DATOS SIMPLE DE RESIDUOS ----
     categorias = {
         "reciclaje": {
             "palabras": [
